@@ -1,0 +1,54 @@
+
+<div class="container">
+  <div  class="row" *ngIf="cart.lines.length <= 0">
+    <h1>No hay nada !!!</h1>
+  </div>
+  <div class="row"  *ngIf="cart.lines.length > 0">
+    <table class="table table-ligth">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Subtotal</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let line of cart.lines">
+          <td scope="row">
+            {{ line.product.productName }}
+          </td>
+          <td scope="row">
+            {{ line.product.MSRP | currency: "USD": "symbol": "2.2-2" }}
+          </td>
+          <td>
+            <input 
+              class="form-control-sm" type="number" 
+              [value]="line.quantity" 
+              (change)="cart.updateQuantity(line.product, $event.target.value)" 
+            />
+          </td>
+          <td scope="row">
+            {{(line.lineTotal) | currency: "USD": "symbol": "2.2-2" }}
+          </td>
+          <td>
+            <button class="btn btn-sm btn-primary" 
+              (click)="cart.deleteLine(line.product.productCode)">
+              <i class="fas fa-trash"> Delete</i>
+          </button>
+        </td>
+        </tr>
+      </tbody>
+      <tfoot>
+          <tr>
+            <td class="text-right" colspan="3" >Total:</td>
+            <td class="text-center">
+              {{cart.cartPrice | currency:"USD":"symbol":"2.2-2"}}
+            </td>
+            <td></td>
+          </tr>
+        </tfoot>
+    </table>
+  </div>
+</div>

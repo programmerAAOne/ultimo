@@ -1,0 +1,14 @@
+<div class="pull-xs-right" style="color: white; font-weight: bold">
+  <small>
+    <button class="btn btn-primary btn-sm" [disabled]="cart.itemCount == 0" routerLink="/cart">
+      <i class="fas fa-shopping-cart"></i>
+      <span *ngIf="cart.itemCount > 0"> 
+        {{ cart.itemCount }} item(s)
+        {{ cart.cartPrice | currency: "USD": "symbol": "2.2-2" }}
+      </span>
+      <span *ngIf="cart.itemCount == 0">
+        (empty)
+      </span>
+    </button>
+  </small>
+</div>

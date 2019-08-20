@@ -1,0 +1,5 @@
+.product-details:hover {
+  color: orange !important;
+  text-decoration: underline;
+  cursor: pointer;
+}
